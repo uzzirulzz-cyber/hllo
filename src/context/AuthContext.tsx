@@ -33,28 +33,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           setCurrentUser(null);
         });
     } else {
-      // Default to auto-login Creed Bixby if first visit so user gets right in, or user can log out
-      const defaultUser = {
-        id: 'usr-000',
-        name: 'crdbixx',
-        email: 'crdbixx@helloworld007.io',
-        role: 'SUPER ADMIN' as UserRole,
-        avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-        department: 'Super Admin Executive',
-        assignedLeadCount: 99,
-        conversionRate: 52.4,
-        createdAt: '2025-01-01T08:00:00Z',
-      };
-      setCurrentUser(defaultUser);
-      const fakeToken = Buffer.from(JSON.stringify({ id: defaultUser.id, email: defaultUser.email, role: defaultUser.role })).toString('base64');
-      setToken(fakeToken);
-      localStorage.setItem('hw007_auth_token', fakeToken);
+      setCurrentUser(null);
     }
 
     api.getUsers()
       .then(setUsersList)
       .catch(() => {});
-  }, []);
+  }, [token]);
 
   const login = async (email: string, password?: string, role?: UserRole) => {
     try {

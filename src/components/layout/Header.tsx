@@ -26,7 +26,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onNavigate, activeRoute }) => {
-  const { currentUser, role, switchRole, logout } = useAuth();
+  const { currentUser, role, switchRole, login, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<{
     leads: any[];
@@ -388,6 +388,57 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeRoute }) => {
                 <div className="mt-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-extrabold bg-blue-950 text-blue-300 border border-blue-800/60">
                   {role} PERMISSIONS
                 </div>
+              </div>
+
+              <div className="py-2 px-1 space-y-1">
+                <div className="text-[10px] font-extrabold uppercase text-slate-400 px-2 tracking-wider">
+                  Switch Account Persona
+                </div>
+                <button
+                  onClick={() => {
+                    login('crdbixx@helloworld007.io', 'playbeat123', 'SUPER ADMIN');
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full text-left px-2 py-1 rounded text-[11px] font-bold text-amber-400 hover:bg-slate-800 flex items-center gap-1.5"
+                >
+                  👑 crdbixx (Super Admin)
+                </button>
+                <button
+                  onClick={() => {
+                    login('james.bond@helloworld007.io', 'playbeat123', 'SUPER ADMIN');
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full text-left px-2 py-1 rounded text-[11px] font-bold text-amber-300 hover:bg-slate-800 flex items-center gap-1.5"
+                >
+                  🕵️ James Bond (Super Admin)
+                </button>
+                <button
+                  onClick={() => {
+                    login('creed.bixby@helloworld007.io', 'playbeat123', 'ADMIN');
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full text-left px-2 py-1 rounded text-[11px] font-bold text-blue-400 hover:bg-slate-800 flex items-center gap-1.5"
+                >
+                  👔 Creed Bixby (Admin)
+                </button>
+                <button
+                  onClick={() => {
+                    login('a.mercer@helloworld.io', 'playbeat123', 'AGENT');
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full text-left px-2 py-1 rounded text-[11px] font-bold text-slate-300 hover:bg-slate-800 flex items-center gap-1.5"
+                >
+                  💼 Alex Mercer (Agent)
+                </button>
+                <button
+                  onClick={() => {
+                    login('ai.concierge@helloworld007.io', 'playbeat123', 'AI GREETER');
+                    setShowUserMenu(false);
+                  }}
+                  className="w-full text-left px-2 py-1 rounded text-[11px] font-bold text-purple-300 hover:bg-slate-800 flex items-center gap-1.5"
+                >
+                  🤖 AI Concierge (Greeter Bot)
+                </button>
               </div>
 
               <div className="py-1">

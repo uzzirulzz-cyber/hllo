@@ -132,10 +132,22 @@ async function startServer() {
 
   // 1. AUTH API
   app.post('/api/auth/login', (req: Request, res: Response) => {
-    const { email } = req.body;
-    let user = db.users.find((u) => u.email.toLowerCase() === (email || '').toLowerCase());
+    const { email, role } = req.body;
+    const searchEmail = (email || '').toLowerCase().trim();
+    let user = db.users.find(
+      (u) =>
+        u.email.toLowerCase() === searchEmail ||
+        u.email.toLowerCase().startsWith(searchEmail.split('@')[0]) ||
+        u.name.toLowerCase().includes(searchEmail.split('@')[0])
+    );
+    if (!user && role) {
+      user = db.users.find((u) => u.role === role);
+    }
     if (!user) {
-      user = db.users[0]; // Fallback to Super Admin James Bond
+      user = db.users[0];
+    }
+    if (role) {
+      user = { ...user, role: role as UserRole };
     }
     const token = generateToken(user);
     db.logAudit(user.id, user.name, user.role, 'USER_LOGIN', 'Auth', `User logged in successfully as ${user.role}`);
