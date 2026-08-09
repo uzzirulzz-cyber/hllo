@@ -37,6 +37,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, route: '/dashboard' },
+    { id: 'sales', label: 'Sales Pipeline', icon: TrendingUp, route: '/sales', badge: 'Active' },
     { id: 'leads', label: 'Leads', icon: Target, route: '/leads', badge: '100+' },
     { id: 'generator', label: 'Lead Generator', icon: Sparkles, route: '/generator', isHot: true },
     { id: 'companies', label: 'Companies', icon: Building2, route: '/companies' },

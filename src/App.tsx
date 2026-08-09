@@ -4,6 +4,7 @@ import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
 import { LoginView } from './components/auth/LoginView';
 import { DashboardView } from './components/dashboard/DashboardView';
+import { SalesPipelineView } from './components/sales/SalesPipelineView';
 import { LeadsListView } from './components/leads/LeadsListView';
 import { LeadGeneratorView } from './components/leads/LeadGeneratorView';
 import { LeadDetailView } from './components/leads/LeadDetailView';
@@ -65,6 +66,14 @@ const MainAppContent: React.FC = () => {
         <main className="flex-1 lg:pl-64 min-w-0 transition-all duration-300">
           {currentRoute === '/dashboard' && (
             <DashboardView
+              onNavigate={handleNavigate}
+              onOpenAddLeadModal={() => setIsAddLeadModalOpen(true)}
+            />
+          )}
+
+          {currentRoute === '/sales' && (
+            <SalesPipelineView
+              key={refreshTrigger}
               onNavigate={handleNavigate}
               onOpenAddLeadModal={() => setIsAddLeadModalOpen(true)}
             />
