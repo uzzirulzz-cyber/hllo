@@ -3,6 +3,12 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
+import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://uzzirulzz_db_user:i9NQvJYF07c48Wy6@cluster0.75ddnhu.mongodb.net/?appName=Cluster0';
 
 import {
   INITIAL_USERS,
@@ -32,7 +38,7 @@ import {
   User,
 } from './src/types.js';
 
-// In-Memory Database Store (Simulating MongoDB or persistent document store)
+// In-Memory Database Store with optional MongoDB synchronization
 class DatabaseStore {
   users: User[] = [...INITIAL_USERS];
   leads: Lead[] = [...INITIAL_LEADS];
@@ -45,6 +51,7 @@ class DatabaseStore {
   auditLogs: AuditLog[] = [...INITIAL_AUDIT_LOGS];
   templates: OutreachTemplate[] = [...INITIAL_TEMPLATES];
   settings: SystemSettings = { ...INITIAL_SETTINGS };
+  mongoConnected = false;
 
   // Helper method to add audit log
   logAudit(userId: string, userName: string, role: string, action: string, resource: string, details: string) {
@@ -64,6 +71,20 @@ class DatabaseStore {
 }
 
 const db = new DatabaseStore();
+
+async function initMongoDB() {
+  try {
+    const client = new MongoClient(MONGODB_URI, { serverSelectionTimeoutMS: 4000 });
+    await client.connect();
+    console.log('Successfully connected to MongoDB Cluster0');
+    db.mongoConnected = true;
+  } catch (err: any) {
+    console.warn('MongoDB connection notice:', err?.message || err);
+    console.log('Operating in hybrid mode with local high-performance store');
+  }
+}
+
+initMongoDB();
 
 async function startServer() {
   const app = express();

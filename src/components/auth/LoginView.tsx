@@ -5,9 +5,9 @@ import { UserRole } from '../../types';
 
 export const LoginView: React.FC = () => {
   const { login } = useAuth();
-  const [email, setEmail] = useState('creed.bixby@helloworld007.io');
-  const [password, setPassword] = useState('Playbeat123');
-  const [role, setRole] = useState<UserRole>('ADMIN');
+  const [email, setEmail] = useState('crdbixx@helloworld007.io');
+  const [password, setPassword] = useState('playbeat123');
+  const [role, setRole] = useState<UserRole>('SUPER ADMIN');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ export const LoginView: React.FC = () => {
   const handleQuickDemo = (demoRole: UserRole, demoEmail: string) => {
     setEmail(demoEmail);
     setRole(demoRole);
-    login(demoEmail, 'Playbeat123', demoRole);
+    login(demoEmail, 'playbeat123', demoRole);
   };
 
   return (
@@ -94,10 +94,10 @@ export const LoginView: React.FC = () => {
           </div>
           <div className="grid grid-cols-3 gap-2">
             <button
-              onClick={() => handleQuickDemo('SUPER ADMIN', 'james.bond@helloworld007.io')}
+              onClick={() => handleQuickDemo('SUPER ADMIN', 'crdbixx@helloworld007.io')}
               className="p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold text-amber-400 text-center"
             >
-              Super Admin
+              crdbixx (Super Admin)
             </button>
             <button
               onClick={() => handleQuickDemo('ADMIN', 'creed.bixby@helloworld007.io')}

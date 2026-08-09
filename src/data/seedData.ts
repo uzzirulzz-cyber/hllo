@@ -15,6 +15,17 @@ import {
 
 export const INITIAL_USERS: User[] = [
   {
+    id: 'usr-000',
+    name: 'crdbixx',
+    email: 'crdbixx@helloworld007.io',
+    role: 'SUPER ADMIN',
+    avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    department: 'Super Admin Executive',
+    assignedLeadCount: 99,
+    conversionRate: 52.4,
+    createdAt: '2025-01-01T08:00:00Z',
+  },
+  {
     id: 'usr-007',
     name: 'Creed Bixby',
     email: 'creed.bixby@helloworld007.io',
