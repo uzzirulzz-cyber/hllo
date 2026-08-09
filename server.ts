@@ -143,21 +143,27 @@ async function startServer() {
   });
 
   app.post('/api/auth/register', (req: Request, res: Response) => {
-    const { name, email, role } = req.body;
+    const { name, email, role, greetingMessage, isAiGreeter, greetingTrigger, seatType, department } = req.body;
     const newUser: User = {
       id: `usr-${Date.now()}`,
       name: name || 'New CRM User',
       email: email || `user_${Date.now()}@helloworld.io`,
       role: (role as any) || 'AGENT',
-      avatarUrl: `https://images.unsplash.com/photo-${1500000000000 + Math.floor(Math.random() * 99999999)}?w=150&auto=format&fit=crop&q=80`,
-      department: 'Enterprise Sales',
+      avatarUrl: isAiGreeter
+        ? 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150&auto=format&fit=crop&q=80'
+        : `https://images.unsplash.com/photo-${1500000000000 + Math.floor(Math.random() * 99999999)}?w=150&auto=format&fit=crop&q=80`,
+      department: department || (isAiGreeter ? 'Customer AI Concierge' : 'Enterprise Sales'),
       assignedLeadCount: 0,
-      conversionRate: 0,
+      conversionRate: isAiGreeter ? 94 : 0,
       createdAt: new Date().toISOString(),
+      greetingMessage: greetingMessage || (isAiGreeter ? "Hello! Welcome to Hello World CRM. I'm your AI Concierge. How can I assist you with your business goals today?" : undefined),
+      isAiGreeter: Boolean(isAiGreeter),
+      greetingTrigger: greetingTrigger || 'NEW_LEAD_INQUIRY',
+      seatType: seatType || (isAiGreeter ? 'AI_GREETER_BOT' : 'HUMAN_AGENT'),
     };
     db.users.push(newUser);
     const token = generateToken(newUser);
-    db.logAudit(newUser.id, newUser.name, newUser.role, 'USER_REGISTERED', 'Auth', 'Registered new user account');
+    db.logAudit(newUser.id, newUser.name, newUser.role, 'USER_REGISTERED', 'Auth', `Registered new ${seatType || 'agent'} seat`);
     res.status(201).json({ token, user: newUser });
   });
 

@@ -48,7 +48,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'import', label: 'Import Leads', icon: FileSpreadsheet, route: '/import' },
     { id: 'export', label: 'Export', icon: Download, route: '/export' },
     { id: 'templates', label: 'Templates', icon: FileCode2, route: '/templates' },
-    { id: 'users', label: 'Users', icon: UserCheck, route: '/users' },
+    { id: 'users', label: 'Agent Seats & Users', icon: UserCheck, route: '/users', badge: 'AI Greeters' },
     { id: 'settings', label: 'Settings', icon: Settings, route: '/settings' },
   ];
 

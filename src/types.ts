@@ -1,4 +1,4 @@
-export type UserRole = 'SUPER ADMIN' | 'ADMIN' | 'AGENT';
+export type UserRole = 'SUPER ADMIN' | 'ADMIN' | 'AGENT' | 'AI GREETER';
 
 export type LeadStatus =
   | 'NEW'
@@ -27,6 +27,10 @@ export interface User {
   assignedLeadCount?: number;
   conversionRate?: number;
   createdAt: string;
+  greetingMessage?: string;
+  isAiGreeter?: boolean;
+  greetingTrigger?: string;
+  seatType?: 'HUMAN_AGENT' | 'AI_GREETER_BOT' | 'VIP_CONCIERGE';
 }
 
 export interface Lead {
