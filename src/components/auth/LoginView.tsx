@@ -88,28 +88,50 @@ export const LoginView: React.FC = () => {
         </form>
 
         {/* DEMO ACCOUNT PRESETS */}
-        <div className="pt-4 border-t border-slate-800/80 space-y-2">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 text-center">
-            Instant One-Click Demo Personas
+        <div className="pt-4 border-t border-slate-800/80 space-y-3">
+          <div className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 text-center flex items-center justify-center gap-1.5">
+            <Zap className="w-3.5 h-3.5 text-amber-400" /> Instant One-Click Persona Login
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             <button
+              type="button"
               onClick={() => handleQuickDemo('SUPER ADMIN', 'crdbixx@helloworld007.io')}
-              className="p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold text-amber-400 text-center"
+              className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-400 text-[10px] font-black text-amber-400 text-center transition-all shadow-md group"
             >
-              crdbixx (Super Admin)
+              👑 <span className="group-hover:underline">crdbixx</span>
+              <div className="text-[9px] text-slate-400 font-normal">Super Admin</div>
             </button>
             <button
+              type="button"
+              onClick={() => handleQuickDemo('SUPER ADMIN', 'james.bond@helloworld007.io')}
+              className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-400 text-[10px] font-black text-amber-300 text-center transition-all shadow-md group"
+            >
+              🕵️ <span className="group-hover:underline">James Bond</span>
+              <div className="text-[9px] text-slate-400 font-normal">007 Super Admin</div>
+            </button>
+            <button
+              type="button"
               onClick={() => handleQuickDemo('ADMIN', 'creed.bixby@helloworld007.io')}
-              className="p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold text-blue-400 text-center"
+              className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-blue-500/30 hover:border-blue-400 text-[10px] font-black text-blue-400 text-center transition-all shadow-md group"
             >
-              Creed Bixby (Admin)
+              👔 <span className="group-hover:underline">Creed Bixby</span>
+              <div className="text-[9px] text-slate-400 font-normal">Admin Manager</div>
             </button>
             <button
-              onClick={() => handleQuickDemo('AGENT', 'alex.mercer@helloworld007.io')}
-              className="p-2 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] font-bold text-slate-300 text-center"
+              type="button"
+              onClick={() => handleQuickDemo('AGENT', 'a.mercer@helloworld.io')}
+              className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-slate-700 hover:border-slate-500 text-[10px] font-black text-slate-200 text-center transition-all shadow-md group"
             >
-              Sales Agent
+              💼 <span className="group-hover:underline">Alex Mercer</span>
+              <div className="text-[9px] text-slate-400 font-normal">Sales Agent</div>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleQuickDemo('AI GREETER', 'ai.concierge@helloworld007.io')}
+              className="p-2.5 rounded-xl bg-slate-950 hover:bg-slate-800 border border-purple-500/30 hover:border-purple-400 text-[10px] font-black text-purple-300 text-center transition-all shadow-md group col-span-2 sm:col-span-1"
+            >
+              🤖 <span className="group-hover:underline">AI Concierge</span>
+              <div className="text-[9px] text-slate-400 font-normal">Automated Greeter</div>
             </button>
           </div>
         </div>
