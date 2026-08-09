@@ -31,12 +31,12 @@ const MainAppContent: React.FC = () => {
   }
 
   const handleNavigate = (route: string) => {
-    if (route.startsWith('/leads/')) {
+    if (route && route.startsWith('/leads/')) {
       const id = route.replace('/leads/', '');
       setSelectedLeadId(id);
       setCurrentRoute('/lead-detail');
     } else {
-      setCurrentRoute(route);
+      setCurrentRoute(route || '/dashboard');
     }
   };
 
@@ -55,8 +55,10 @@ const MainAppContent: React.FC = () => {
       <div className="flex flex-1 pt-16">
         {/* SIDEBAR NAVIGATION */}
         <Sidebar
+          activeRoute={currentRoute}
           currentRoute={currentRoute}
           onNavigate={handleNavigate}
+          onOpenAddLeadModal={() => setIsAddLeadModalOpen(true)}
         />
 
         {/* MAIN ROUTE CONTENT CANVAS */}

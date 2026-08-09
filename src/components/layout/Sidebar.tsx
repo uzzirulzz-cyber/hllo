@@ -20,17 +20,20 @@ import {
 } from 'lucide-react';
 
 interface SidebarProps {
-  activeRoute: string;
+  activeRoute?: string;
+  currentRoute?: string;
   onNavigate: (route: string) => void;
-  onOpenAddLeadModal: () => void;
+  onOpenAddLeadModal?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   activeRoute,
+  currentRoute,
   onNavigate,
   onOpenAddLeadModal,
 }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const routeToUse = activeRoute || currentRoute || '/dashboard';
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, route: '/dashboard' },
@@ -72,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeRoute === item.route || (item.route === '/leads' && activeRoute.startsWith('/leads/'));
+          const isActive = routeToUse === item.route || (item.route === '/leads' && (routeToUse || '').startsWith('/leads/'));
 
           return (
             <button
